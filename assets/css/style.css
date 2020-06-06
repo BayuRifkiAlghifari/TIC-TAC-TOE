@@ -1,0 +1,227 @@
+/*!
+* 	
+*	Lawan Corona
+*	Author : Bayu Rifki Alghifari
+*
+*/
+
+
+/*
+ 	
+* 	CSS Table of Contents
+*	1. Init Main CSS
+*	2. Sections
+*		2.1 . Border Section
+*		2.2 . Cell Section
+*		2.3 . Mark Section
+*		2.4 . Message Section
+*		2.5 . Footer Sections
+*
+*/
+
+
+/* 
+*	
+*	1. Init Main CSS 
+*
+*/
+
+
+	*, *::after, *::berfore
+	{
+		box-sizing: border-box;
+	}
+
+	:root
+	{
+		--cell-size: 100px;
+		--mark-size: cal(var(--cell-size) * .9);
+		--background-mark-size: 65%;
+	}
+
+	body
+	{
+		margin: 0;
+		background-color: #ebebe0;
+	    font-family: 'arial';
+	}
+
+	.text-center
+	{
+		text-align: center;
+	}
+
+	.disable
+	{
+		cursor: not-allowed !important;
+	}
+
+
+/*
+*
+*	2. Sections
+*
+*/
+
+
+/* 2.1 Border Section */
+	.board
+	{
+		width: 98vw;
+		height: 98vh;
+		display: grid;
+		justify-content: center;
+		align-content: center;
+		grid-template-columns: repeat(5, auto);
+		cursor: pointer;
+	}
+
+
+/* 2.2 . Cell Section */
+	.cell
+	{
+		width: var(--cell-size);
+		height: var(--cell-size);
+		border: 2px solid black;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.cell:first-child,
+	.cell:nth-child(2),
+	.cell:nth-child(3),
+	.cell:nth-child(4),
+	.cell:nth-child(5)
+	{
+		border-top: none;
+	}
+
+	.cell:nth-child(5n + 1)
+	{
+		border-left: none;
+	}
+
+	.cell:nth-child(5n + 5)
+	{
+		border-right: none;
+	}
+
+	.cell:last-child,
+	.cell:nth-child(24),
+	.cell:nth-child(23),
+	.cell:nth-child(22),
+	.cell:nth-child(21)
+	{
+		border-bottom: none;
+	}
+
+
+/* 2.3 . Mark Section */
+	.cell.corona
+	{
+		background-image: url('../img/opponent.png');
+		background-position: center;
+	  	background-repeat: no-repeat;
+	  	background-size: var(--background-mark-size);
+		background-color: #ffe6f3;
+		z-index: 1;
+	}
+
+	.cell.player
+	{
+		background-image: url('../img/player.png');
+		background-position: center;
+	  	background-repeat: no-repeat;
+	  	background-size: var(--background-mark-size);
+		background-color: #ffe6f3;
+		z-index: 1;
+	}
+
+	.cell.corona,
+	.cell.player
+	{
+		cursor: not-allowed;
+	}
+
+	.board.corona .cell:not(.corona):not(.player):hover
+	{
+		background-image: url('../img/opponent.png');
+		background-position: center;
+	  	background-repeat: no-repeat;
+	  	background-size: var(--background-mark-size);
+	  	opacity: 0.5;
+		z-index: 1;
+	}
+
+	.board.player .cell:not(.corona):not(.player):hover
+	{
+		background-image: url('../img/player.png');
+		background-position: center;
+	  	background-repeat: no-repeat;
+	  	background-size: var(--background-mark-size);
+	  	opacity: 0.5;
+		z-index: 1;
+	}
+
+
+/* 2.4 . Message Section */
+	.message
+	{
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, .9);
+		justify-content: center;
+		align-items: center;
+		z-index: 2;
+		color: white;
+	    font-size: 2rem;
+	    flex-direction: column;
+	    transition: 0.2s ease;
+	    -webkit-transition: 0.2s ease;
+	    -o-transition: 0.2s ease;
+	}
+
+	.message-font
+	{
+		font-size: 14px;
+		font-weight: bold;
+	}
+
+	.btn
+	{
+	    background-color: #1fadc8;
+	    font-size: 14px;
+		cursor: pointer;
+	    border-radius: 0;
+	    width: 100px;
+	    height: 30px;
+	    color: white;
+	    border: none;
+	    transition: 0.2s ease;
+	    -webkit-transition: 0.2s ease;
+	    -o-transition: 0.2s ease;
+	}
+
+	.btn:hover,
+	.btn:focus
+	{
+		cursor: pointer;
+	    background-color: #2e8b57;
+	    border-radius: 10px;
+	    transition: 0.2s ease;
+	    -webkit-transition: 0.2s ease;
+	    -o-transition: 0.2s ease;
+	}
+
+	.message.show
+	{
+		display: flex;
+		transition: 0.2s ease;
+	    -webkit-transition: 0.2s ease;
+	    -o-transition: 0.2s ease;
+	}
